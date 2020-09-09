@@ -12,6 +12,8 @@ abstract class Model {
         if(null === self::$db) {
             self::$db = new \PDO('mysql:host=localhost;dbname=vtc_2', 'root', '');
         }
+
+        return self::$db;
     }
 
     public function save() 
