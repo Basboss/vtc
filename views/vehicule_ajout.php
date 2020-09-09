@@ -4,6 +4,27 @@
 require 'partials/header.php'; ?>
 
 <div class="container">
+    <table class="table">
+        <thead>
+            <th>ID</th>
+            <th>Marque</th>
+            <th>Modele</th>
+            <th>Couleur</th>
+            <th>Immatriculation</th>
+            <th>Modification</th>
+            <th>Suppression</th>
+        </thead>
+        <tbody>
+            <td>1</td>
+            <td>Renault</td>
+            <td>Megane</td>
+            <td>Bleue</td>
+            <td>AA-000-ZZ</td>
+            <td><a href="#">Modifier</a></td>
+            <td><a href="#">Supprimer</a></td>
+        </tbody>
+    </table>
+
     <form method="POST" action="">
         <label for="">Marque</label>
         <input type="text" name="marque" class="form-control">

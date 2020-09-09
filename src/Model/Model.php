@@ -16,6 +16,15 @@ abstract class Model {
         return self::$db;
     }
 
+    public static function findAll()
+    {
+        $table = strtolower(substr(strrchr(get_called_class(), '\\'), 1));
+        $sql = "SELECT * FROM $table";
+
+        return self::getDB()->query($sql)->fetchAll();
+    }
+
+    // Permet de réaliser un INSERT du modèle
     public function save() 
     {
         // Model\Vehicule -> \Vehicule -> Vehicule
@@ -33,4 +42,5 @@ abstract class Model {
         return $query->execute($properties);
 
     }
+    
 }

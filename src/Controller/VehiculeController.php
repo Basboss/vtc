@@ -8,6 +8,9 @@ class VehiculeController
 {
     public function ajout()
     {
+        // Récupérer tous les véhicules
+        $vehicules = Vehicule::findAll();
+
         $result = false;
         $errors = [];
         // Traitement du formulaire
