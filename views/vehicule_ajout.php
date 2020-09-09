@@ -7,8 +7,11 @@ require 'partials/header.php'; ?>
     <form method="POST" action="">
         <label for="">Marque</label>
         <input type="text" name="marque" class="form-control">
-
-        <?php if(isset($errors['marque'])) { ?>
+        
+        <?php
+        // Si une erreur est présente sur le marque
+        // on affiche l'erreur
+        if(isset($errors['marque'])) { ?>
             <div class="text-danger">
                 <?= $errors['marque']; ?>
             </div>

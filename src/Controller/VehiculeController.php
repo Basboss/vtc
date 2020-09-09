@@ -1,4 +1,3 @@
-  
 <?php
 
 namespace Controller;
@@ -9,6 +8,8 @@ class VehiculeController
 {
     public function ajout()
     {
+        $result = false;
+        $errors = [];
         // Traitement du formulaire
         if (!empty($_POST)) {
             $vehicule = new Vehicule();
@@ -16,7 +17,11 @@ class VehiculeController
             $vehicule->setModele($_POST['modele']);
             $vehicule->setCouleur($_POST['couleur']);
             $vehicule->setImmatriculation($_POST['immatriculation']);
-            $vehicule->save();
+            $errors = $vehicule->validate();
+
+            if (empty($errors)) {
+                $result = $vehicule->save();
+            }
         }
 
         require __DIR__.'/../../views/vehicule_ajout.php';
