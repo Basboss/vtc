@@ -15,13 +15,17 @@ require 'partials/header.php'; ?>
             <th>Suppression</th>
         </thead>
         <tbody>
-            <td>1</td>
-            <td>Renault</td>
-            <td>Megane</td>
-            <td>Bleue</td>
-            <td>AA-000-ZZ</td>
-            <td><a href="#">Modifier</a></td>
-            <td><a href="#">Supprimer</a></td>
+            <?php foreach($vehicules as $vehicule) { ?>
+            <tr>
+                <td><?= $vehicule->id_vehicule; ?></td>
+                <td><?= $vehicule->marque; ?></td>
+                <td><?= $vehicule->modele; ?></td>
+                <td><?= $vehicule->couleur; ?></td>
+                <td><?= $vehicule->immatriculation; ?></td>
+                <td><a href="#">Modifier</a></td>
+                <td><a href="#">Supprimer</a></td>
+            </tr>
+            <?php } ?>
         </tbody>
     </table>
 

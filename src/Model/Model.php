@@ -21,7 +21,7 @@ abstract class Model {
         $table = strtolower(substr(strrchr(get_called_class(), '\\'), 1));
         $sql = "SELECT * FROM $table";
 
-        return self::getDB()->query($sql)->fetchAll();
+        return self::getDB()->query($sql)->fetchAll(\PDO::FETCH_OBJ);
     }
 
     // Permet de réaliser un INSERT du modèle
