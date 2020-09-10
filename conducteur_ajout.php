@@ -33,9 +33,84 @@ if(!empty($_POST)) {
     }
 }
 
+// Récupérer tous les conducteurs
+// $db est une instance de PDO
+// On "query" ou on "prepare" une requête
+// query renvoie une instance de PDOStatement
+$conducteurs = $db->query('SELECT * FROM conducteur')->fetchAll();
+
 ?>
 
 <div class="container">
+    <table class="table">
+        <thead>
+            <th>ID</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Modification</th>
+            <th>Suppression</th>
+        </thead>
+        <tbody>
+            <?php foreach($conducteurs as $conducteur) { ?>
+            <tr>
+                <td><?= $conducteur['id_conducteur']; ?></td>
+                <td><?= $conducteur['prenom']; ?></td>
+                <td><?= $conducteur['nom']; ?></td>
+                <td><a href="#">Modifier</a></td>
+                <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger" data-toggle="modal" 
+                            data-target="#exampleModal" 
+                            data-id="<?= $conducteur['id_conducteur']; ?>" 
+                            data-user="<?= htmlspecialchars(json_encode($conducteur), ENT_QUOTES); ?>">
+                        Supprimer
+                    </button>
+                </td>
+            </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Supprimer le conducteur <span id="modal-conducteur-id"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <a href="#" class="btn btn-primary" id="modal-conducteur-url">Confirmer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            // A l'ouverture d'une modal, on l'adapte au chaffeur concerné
+        $('#exampleModal').on('show.bs.modal', function (event) {
+                console.log(event);
+
+                // On récupère l'id associé au button
+                var id = $(event.relatedTarget).data('id');
+
+                $('#modal-conducteur-id').texte(id);
+                // Permet de récupérer TOUTES les infos de l'utilisateur dans un objet
+                var user = $(event.relatedTarget).data('user');
+
+                $('#modal-conducteur-url').attr('href', '?delete='+user.id_conducteur);
+            });
+        });
+    </script>
+
+
     <?php if($result) { ?>
         <div class="alert alert-success">
             Le conducteur a été ajouté.
