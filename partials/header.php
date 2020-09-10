@@ -21,7 +21,7 @@
                         <a class="nav-link" href="/evalvtc/index.php/vehicule/ajout">Véhicules</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Associations</a>
+                        <a class="nav-link" href="/evalvtc/association.php">Associations</a>
                     </li>
                 </ul>
             </div>

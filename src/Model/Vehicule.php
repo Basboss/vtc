@@ -45,6 +45,23 @@ class Vehicule extends Model
         ]);
     }
 
+    public function update($id)
+    {
+        $sql = 'UPDATE vehicule SET marque = :marque, modele = :modele, 
+                couleur = :couleur, immatriculation = :immatriculation 
+                WHERE id_vehicule = :id';
+
+        $query = self::getDb()->prepare($sql);
+
+        return $query->execute([
+            'marque' => $this->marque,
+            'modele' => $this->modele,
+            'couleur' => $this->couleur,
+            'immatriculation' => $this->immatriculation,
+            'id' => $id,
+        ]);
+    }
+
     // Cette méthode permet de valider l'objet
     // On retourne un tableau d'erreur
 

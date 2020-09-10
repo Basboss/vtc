@@ -29,6 +29,7 @@ if (!empty($_POST)) {
         'prenom' => $prenom
     ];
 
+    // On change la requête SQL si on est en modification
     if (isset($_GET['edit'])) {
         $sql = 'UPDATE conducteur
                 SET nom = :nom, prenom = :prenom
